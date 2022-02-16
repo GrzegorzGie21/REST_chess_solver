@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+black = "22.0.1"
+chess = "1.999"
+flake8 = "4.0.1"
+pytest = "7.0.0"
+flask = "1.1.4"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
