@@ -89,9 +89,9 @@ def page_not_found(error: str) -> Response:
 
 
 @app.errorhandler(500)
-def server_error() -> Response:
-    return make_response(jsonify({"error": "Internal server error"}))
+def server_error(error: str) -> Response:
+    return make_response(jsonify({"error": "Internal server error"}), 500)
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=False)
