@@ -15,15 +15,15 @@ class Figure(ABC):
 
     @property
     @abstractmethod
-    def get_piece(self) -> None:
-        return
+    def piece_type(self) -> chess.Piece:
+        raise NotImplementedError
 
     def list_available_moves(self) -> list:
         if not self.position:
             return []
         square = chess.parse_square(self.position)
         board.clear_board()
-        board.set_piece_at(square, self.get_piece)
+        board.set_piece_at(square, self.piece_type)
         available_moves = [move.uci()[2:4] for move in board.legal_moves]
         return available_moves
 
@@ -38,7 +38,7 @@ class Pawn(Figure):
         self.type = type
 
     @property
-    def get_piece(self) -> chess.Piece:
+    def piece_type(self) -> chess.Piece:
         return chess.Piece(self.type, True)
 
 
@@ -48,7 +48,7 @@ class Knight(Figure):
         self.type = type
 
     @property
-    def get_piece(self) -> chess.Piece:
+    def piece_type(self) -> chess.Piece:
         return chess.Piece(self.type, True)
 
 
@@ -58,7 +58,7 @@ class Bishop(Figure):
         self.type = type
 
     @property
-    def get_piece(self) -> chess.Piece:
+    def piece_type(self) -> chess.Piece:
         return chess.Piece(self.type, True)
 
 
@@ -68,7 +68,7 @@ class Rook(Figure):
         self.type = type
 
     @property
-    def get_piece(self) -> chess.Piece:
+    def piece_type(self) -> chess.Piece:
         return chess.Piece(self.type, True)
 
 
@@ -78,7 +78,7 @@ class Queen(Figure):
         self.type = type
 
     @property
-    def get_piece(self) -> chess.Piece:
+    def piece_type(self) -> chess.Piece:
         return chess.Piece(self.type, True)
 
 
@@ -88,5 +88,5 @@ class King(Figure):
         self.type = type
 
     @property
-    def get_piece(self) -> chess.Piece:
+    def piece_type(self) -> chess.Piece:
         return chess.Piece(self.type, True)
