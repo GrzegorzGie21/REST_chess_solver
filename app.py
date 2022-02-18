@@ -13,6 +13,11 @@ def index() -> Response:
 @app.route('/api/v1/<string:chess_figure>/<string:current_field>/', methods=["GET"])
 @app.route('/api/v1//<string:chess_figure>/<string:current_field>/<string:dest_field>/', methods=['GET'])
 def figure_moves(chess_figure: str, current_field: str, dest_field: str = None) -> Response:
+    chess_figure = chess_figure.lower()
+    current_field = current_field.lower()
+    if dest_field:
+        dest_field = dest_field.lower()
+
     figure_type, Figure = const.CHESS_FIGURES.get(chess_figure, (None, None))
 
     if not figure_type:
