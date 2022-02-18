@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 import chess
 
+board = chess.Board(fen=None)
+
 
 class Figure(ABC):
     board = chess.Board(fen=None)
@@ -11,87 +13,80 @@ class Figure(ABC):
         else:
             self.position = position
 
+    @property
     @abstractmethod
-    def list_available_moves(self):
-        pass
+    def get_piece(self) -> None:
+        return
+
+    def list_available_moves(self) -> list:
+        if not self.position:
+            return []
+        square = chess.parse_square(self.position)
+        board.clear_board()
+        board.set_piece_at(square, self.get_piece)
+        available_moves = [move.uci()[2:4] for move in board.legal_moves]
+        return available_moves
 
     def validate_move(self, dest_field):
-        if not self.position or dest_field not in chess.SQUARE_NAMES:
-            return "Field does not exist."
-        move = chess.Move(
-            chess.parse_square(self.position), chess.parse_square(dest_field)
-        )
-        return move in self.board.legal_moves
+        move = "valid" if dest_field in self.list_available_moves() else "invalid"
+        return move
 
 
 class Pawn(Figure):
-    pawn = chess.Piece(1, True)
+    def __init__(self, position: str, type: int) -> None:
+        super().__init__(position)
+        self.type = type
 
-    def list_available_moves(self):
-        if not self.position:
-            return []
-        square = chess.parse_square(self.position)
-        self.board.set_piece_at(square, self.pawn)
-        print(self.board)
-        available_moves = [move.uci()[2:4] for move in self.board.legal_moves]
-        return available_moves
+    @property
+    def get_piece(self) -> chess.Piece:
+        return chess.Piece(self.type, True)
 
 
 class Knight(Figure):
-    knight = chess.Piece(2, True)
+    def __init__(self, position: str, type: int) -> None:
+        super().__init__(position)
+        self.type = type
 
-    def list_available_moves(self):
-        if not self.position:
-            return []
-        square = chess.parse_square(self.position)
-        self.board.set_piece_at(square, self.knight)
-        available_moves = [move.uci()[2:4] for move in self.board.legal_moves]
-        return available_moves
+    @property
+    def get_piece(self) -> chess.Piece:
+        return chess.Piece(self.type, True)
 
 
 class Bishop(Figure):
-    bishop = chess.Piece(3, True)
+    def __init__(self, position: str, type: int) -> None:
+        super().__init__(position)
+        self.type = type
 
-    def list_available_moves(self):
-        if not self.position:
-            return []
-        square = chess.parse_square(self.position)
-        self.board.set_piece_at(square, self.bishop)
-        available_moves = [move.uci()[2:4] for move in self.board.legal_moves]
-        return available_moves
+    @property
+    def get_piece(self) -> chess.Piece:
+        return chess.Piece(self.type, True)
 
 
 class Rook(Figure):
-    rook = chess.Piece(4, True)
+    def __init__(self, position: str, type: int) -> None:
+        super().__init__(position)
+        self.type = type
 
-    def list_available_moves(self):
-        if not self.position:
-            return []
-        square = chess.parse_square(self.position)
-        self.board.set_piece_at(square, self.rook)
-        available_moves = [move.uci()[2:4] for move in self.board.legal_moves]
-        return available_moves
+    @property
+    def get_piece(self) -> chess.Piece:
+        return chess.Piece(self.type, True)
 
 
 class Queen(Figure):
-    queen = chess.Piece(5, True)
+    def __init__(self, position: str, type: int) -> None:
+        super().__init__(position)
+        self.type = type
 
-    def list_available_moves(self):
-        if not self.position:
-            return []
-        square = chess.parse_square(self.position)
-        self.board.set_piece_at(square, self.queen)
-        available_moves = [move.uci()[2:4] for move in self.board.legal_moves]
-        return available_moves
+    @property
+    def get_piece(self) -> chess.Piece:
+        return chess.Piece(self.type, True)
 
 
 class King(Figure):
-    king = chess.Piece(6, True)
+    def __init__(self, position: str, type: int) -> None:
+        super().__init__(position)
+        self.type = type
 
-    def list_available_moves(self):
-        if not self.position:
-            return []
-        square = chess.parse_square(self.position)
-        self.board.set_piece_at(square, self.king)
-        available_moves = [move.uci()[2:4] for move in self.board.legal_moves]
-        return available_moves
+    @property
+    def get_piece(self) -> chess.Piece:
+        return chess.Piece(self.type, True)
