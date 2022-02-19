@@ -26,7 +26,7 @@ def test_correct_figure_url(client, chess_figure):
 
 
 def test_valid_move_url(client):
-    response = client.get(f"/api/v1/pawn/a2/a3/")
+    response = client.get("/api/v1/pawn/a2/a3/")
     data = response.json
     assert response.status_code == 200
     assert isinstance(data, dict)
