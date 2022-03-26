@@ -5,6 +5,7 @@
 ### 1. Za pomocą Dockera:
 * utworzyć nowy folder komendą: `mkdir chess_solver`
 * przejść do utworzonego folderu: `cd chess_solver`
+* pobrać plik z repozytorium plik `GRZEGORZ_GAŁĄZKA.bundle`
 * uruchomić komendy: 
   * `git init`
   * `git pull GRZEGORZ_GAŁĄZKA.bundle master`
@@ -13,7 +14,10 @@
 ### 2. "Tradycyjnie" bez dockera:
 * utworzyć nowy folder komendą: `mkdir chess_solver`
 * przejść do utworzonego folderu: `cd chess_solver`
+* pobrać plik z repozytorium plik `GRZEGORZ_GAŁĄZKA.bundle`
 * uruchomić komendy:
+  * `git init`
+  * `git pull GRZEGORZ_GAŁĄZKA.bundle master`
   * `pip install pipenv`
   * `pipenv install`
   * `pipenv shell`
