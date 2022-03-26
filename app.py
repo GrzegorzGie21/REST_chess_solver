@@ -41,7 +41,7 @@ def figure_moves(
     if current_field not in const.CHESS_FIELDS:
         status_code = 409
         context = create_response_context(
-            availableMoves=[],
+            availableMoves=figure.list_available_moves(),
             figure=chess_figure,
             error="Field does not exist.",
             currentField=current_field,
