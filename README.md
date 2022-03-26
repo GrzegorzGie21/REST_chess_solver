@@ -10,8 +10,8 @@
   * `git init`
   * `git pull GRZEGORZ_GAŁĄZKA.bundle master`
   * `docker build .` 
-  * `docker compose up` 
-### 2. "Tradycyjnie" bez dockera:
+  * `docker-compose up` 
+### 2. "Tradycyjnie" bez Dockera:
 * utworzyć nowy folder komendą: `mkdir chess_solver`
 * przejść do utworzonego folderu: `cd chess_solver`
 * pobrać plik z repozytorium plik `GRZEGORZ_GAŁĄZKA.bundle`
